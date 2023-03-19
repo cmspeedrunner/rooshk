@@ -6,4 +6,6 @@ the blue `~` is the oceans/rivers<br>
 the green `#` is the grass tiles<br>
 the grey `%` is the stone tiles<br>
 <br>
-In addition you will see a stats page, this where all the info is, you will also see a prompt with 10 different options to bring prosperity, danger, meteors, natural disasters, economic pros and cons, harvests, plauges and viruses, famines and more. All your choices will affect the world you are controlling.
+In addition you will see a stats page, this where all the info is, you will also see a prompt with 10 different options to bring prosperity, danger, meteors, natural disasters, economic pros and cons, harvests, plauges and viruses, famines and more. All your choices will affect the world you are controlling.<br>
+<br>
+ROOSHK REQUIRES NO LIBRARIES
