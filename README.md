@@ -1,2 +1,2 @@
 # rooshk
-Rooshk is a command line game in which you act as god over a sandbox world. Randomly generated population, landscape, economy, belief in you as a percent, hapiness and more.
+Rooshk is a command line game in which you act as god over a sandbox world. Randomly generated population, landscape, economy, belief in you as a percent, hapiness and more. When you start you will be given 10 options which will all have some effect on peoples belief of you and your popularity, the economy of the world you are viewing, the hapiness of the people, the population and more. 
