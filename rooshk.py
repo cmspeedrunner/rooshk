@@ -8,7 +8,7 @@ grass = "\033[1;32m#\033[0m"
 house = "\u001b[33m[@]\033[0m"
 # DEFINING CONFIG
 steps = 75 # More steps = Bigger gen
-digit = [1,2,3,4,5,6,7,8,9,0,10]
+digit = [1,2,3,4,5,6,7,8,9]
 belief = 100
 happiness = random.randint(87,101)
 unbeliefamine = random.randint(20,100)
@@ -72,7 +72,11 @@ while True:
     choice = input(">")
     choice = choice.strip()
     if choice != "break":
-        choice = int(choice)
+        try:
+            choice = int(choice)
+        except:
+            print("My mercy! You have to enter a number!")
+            continue
     if choice == 1:
         unbeliefamine = random.randint(20,100)
         map = map.replace("#","\u001b[33m#\033[0m")
