@@ -8,7 +8,7 @@ grass = "\033[1;32m#\033[0m"
 house = "\u001b[33m[@]\033[0m"
 # DEFINING CONFIG
 steps = 75 # More steps = Bigger gen
-digit = [1,2,3,4,5,6,7,8,9,0,10]
+digit = [1,2,3,4,5,6,7,8,9,0,10,11]
 belief = 100
 happiness = random.randint(87,101)
 unbeliefamine = random.randint(20,100)
@@ -30,8 +30,12 @@ alienmood = ["are unhappy with the government after the alien incident of "+str(
 gravmood = ["are unhappy with the violation of physics, circa "+str(year),"have stopped believing in you, in total "+str(unbeliefalien)+r"% of people stopped believing in you...", "are dying from gravity not giving a fuck", "are crowding under trees as to not die.", "are having mass suicide events", "are sacrificing their shoes at an alter for you, they belive they made a mistake.", "are forming a new anti-gravity government", "are depressed and high.", "are practicing different religions as "+str(unbeliefalien)+r"% of people stopped believing in you...", "are forming new governments..."]
 goodharvestmood = ["are excited with the harvest", "are well fed", "are excited to eat food", "are thriving now that their economy is up"]
 economicboostmood = ["are excited with the economic boom", "have alot more money", "are excited to eat food properly", "are thriving now that their economy is up"]
-economicdownturnmood = ["are depressed with the economic downturn", "have alot less money", "are sad that they cannot eat food properly", "are depressed now that their economy is down"]
+economicdownturnmood =["are depressed with the economic downturn", "have alot less money", "are sad that they cannot eat food properly", "are depressed now that their economy is down"]
+floodmood =["are depressed with the flood", "have alot less money", "are sad that they cannot be on dry land", "are depressed now that their economy is down", "are huddling on the roofs of houses to keep safe", "are scared of you"]
+childbirthmood =["are happy with the childbirth", "have alot less money because of the childbirth", "are sad because  of the overpopulation", "are depressed now that their economy is down", "are delighted with the childbirth", "are delighted with you"]
+
 map = []
+
 name = str(str(prefix[random.randint(0,len(prefix)-1)])+str(suffix[random.randint(0,len(suffix)-1)]))
 population = 0
 for i in range(steps):
@@ -46,9 +50,7 @@ for i in range(steps):
         amount = random.randint(0,3)
         map.append(house*amount)
         for i in range(amount):
-            population += random.randint(1,6)
-        
-
+            population += random.randint(1,6)        
 map = "".join(map)
 print(map)
 print("STATS:")
@@ -65,12 +67,15 @@ if economy_status == 0:
 if economy_status == 1:
         print("ECONOMY: "+str(economy)+"\033[0;31m\\/ "+str(economy_rate)+"\033[0m")
 print("STATUS:\nThe citizens of "+name+" are "+str(mood[random.randint(0, len(mood)-1)]))
-population = population
+limit = population*3
+upper_bound = population*4
 #try:
 while True:
-    print("\nMerciful Lord, you have a choice. What do you want to unleash upon these terminalites...\n1. Famine\n2. Plague\n3. Meteor\n4. Riots\n5. Alien attack\n6. Flip Gravity\n7. Mass Paronoia\n8. Good harvest\n9. Economic Recession")
+    print("\nMerciful Lord, you have a choice. What do you want to unleash upon these terminalites...\n1. Famine\n2. Plague\n3. Meteor\n4. Riots\n5. Alien attack\n6. Flip Gravity\n7. Mass Paronoia\n8. Good harvest\n9. Economic Recession\n10. Flood\n11. Childbirth Epidemic")
     choice = input(">")
     choice = choice.strip()
+    explode = False
+    
     if choice != "break":
         choice = int(choice)
     if choice == 1:
@@ -334,9 +339,83 @@ while True:
         economy_rate = random.random()
         print("ECONOMY: "+str(economy)+"\033[0;31m\\/ "+str(economy_rate)+"%"+"\033[0m")
         print("STATUS:\nThe citizens of "+name+" "+str(economicdownturnmood[random.randint(0, len(economicdownturnmood)-1)]))
+    if choice == 10:
+        map = map.replace("#", "\033[0;36m#\033[0m")
+        map = map.replace("[@]","\033[0;36m[@]\033[0m")
+        mape = map.replace("~", "\033[0;36m~\033[0m")
+        unbeliefplague = random.randint(0,45)
+        print(map)
+        deathcount = random.randint(0,population)
+        population = population-deathcount
+        sadness = random.randint(0,23)
+        happiness = happiness - sadness
+        belief = belief - unbeliefplague
+        print("STATS:")
+        print("---------------")
+        print("NAME: "+name)
+        print("POPULATION: "+str(population))
+        print("\u001b[31m-"+str(deathcount)+" people died as a result of the this flood\033[0m")
+        print("YEAR: "+str(year+random.randint(1,10)))
+        print("BELIEF IN YOU: "+str(belief)+"%")
+        print("\u001b[31m-"+str(unbeliefplague)+r"% belief"+"\033[0m")
+        print("HAPINESS: "+str(happiness))
+        print("\u001b[31m-"+str(sadness)+" hapiness\033[0m")
+        economy_status = random.randint(0,1)
+        economy_rate = random.random()
+        print("ECONOMY: "+str(economy)+"\033[0;31m\\/ "+str(economy_rate)+"%"+"\033[0m")
+        print("STATUS:\nThe citizens of "+name+" "+str(floodmood[random.randint(0, len(floodmood)-1)]))
+    if choice == 11:
+        if population >= 2:
+            beliefadd = random.randint(0,45)
+            print(map)
+            sadness = random.randint(0,5)
+            happiness = happiness + sadness
+            belief = belief + beliefadd
+            childsurplus = random.randint(5,60)
+            population = population + childsurplus
+            print("STATS:")
+            print("---------------")
+            print("NAME: "+name)
+            print("POPULATION: "+str(population))
+            print("\033[0;32m+"+str(childsurplus)+" population\033[0m")
+            print("YEAR: "+str(year+random.randint(1,10)))
+            print("BELIEF IN YOU: "+str(belief)+"%")
+            print("\033[0;32m+"+str(unbeliefplague)+r"% belief"+"\033[0m")
+            print("HAPINESS: "+str(happiness))
+            print("\033[0;32m+"+str(sadness)+" hapiness\033[0m")
+            economy_status = random.randint(0,1)
+            economy_rate = random.random()
+            print("ECONOMY: "+str(economy)+"\033[0;31m\\/ "+str(economy_rate)+"%"+"\033[0m")
+            print("STATUS:\nThe citizens of "+name+" "+str(childbirthmood[random.randint(0, len(childbirthmood)-1)]))
+        if population < 2:
+            print("\033[0;31m\nNot enough people to reproduce! Your essentially exctinct now...\033[0m")
+
     
     if choice != "break" and choice not in digit:
         print("ERROR, NOT A VALID CHOICE, TRY AGAIN")
     if choice == "break":
         exit()
         quit()
+    if population > limit:
+        print("\n\u001b[31m!Warning!\nMy lord, your population is in the danger zone, the higher the population, the more your citizens suffer...\033[0m")
+    if population > upper_bound:
+        print(map)
+        sadness = random.randint(0, 6)
+        happiness = happiness - sadness
+        belief = belief - beliefadd
+        childsurplus = random.randint(5,60)
+        population = round(population/2)
+        print("STATS:")
+        print("---------------")
+        print("NAME: "+name)
+        print("POPULATION: "+str(population))
+        print("\u001b[31m-"+str(childsurplus)+" people left\033[0m")
+        print("YEAR: "+str(year+random.randint(1,10)))
+        print("BELIEF IN YOU: "+str(belief)+"%")
+        print("\u001b[31m-"+str(unbeliefplague)+r"% belief"+"\033[0m")
+        print("HAPINESS: "+str(happiness))
+        print("\u001b[31m-"+str(sadness)+" hapiness\033[0m")
+        economy_status = random.randint(0,1)
+        economy_rate = random.random()
+        print("ECONOMY: "+str(economy)+"\033[0;31m\\/ "+str(economy_rate)+"%"+"\033[0m")
+        print("STATUS:\nThe citizens of "+name+" \u001b[31mhave mostly fleed the island, the population is just far too high to sustain anyone.\033[0m")
