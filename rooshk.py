@@ -404,7 +404,7 @@ while True:
         happiness = happiness - sadness
         belief = belief - beliefadd
         childsurplus = random.randint(5,60)
-        population = round(population/2)
+        population = population/2
         print("STATS:")
         print("---------------")
         print("NAME: "+name)
